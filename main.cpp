@@ -7,6 +7,7 @@
 
 const int WIDTH = 1024;
 const int HEIGHT = 768;
+bool full_screen = false;
 
 std::vector<GLuint> textures;
 
@@ -38,15 +39,55 @@ void loadTextures() {
     textures.push_back(loadTexture("dvd.jpg"));
 }
 
-int main(int argc, char** argv) {
-    glfwInit();
-    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Bouncing DVD Logo", nullptr, nullptr);
-    glfwMakeContextCurrent(window);
+void toggle_full_screen(GLFWwindow* window) {
+    if (full_screen) {
+        glfwSetWindowMonitor(window, nullptr, 100, 100, WIDTH, HEIGHT, GLFW_DONT_CARE);
+    } else {
+        GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+        const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+        glfwSetWindowMonitor(window, monitor, 0, 0, mode->width, mode->height, mode->refreshRate);    
+    }
+    full_screen = !full_screen;
+}
 
-    loadTextures();
+static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
+    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
+        glfwSetWindowShouldClose(window, GLFW_TRUE);
+    }
+    if (key == GLFW_KEY_F && action == GLFW_PRESS) {
+        toggle_full_screen(window);
+    }
+}
+
+static void error_callback(int error, const char* description)
+{
+    fprintf(stderr, "Error: %s\n", description);
+}
+
+int main(int argc, char** argv) {
+    glfwSetErrorCallback(error_callback);
+
+    if (!glfwInit()) exit(EXIT_FAILURE);
+
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
+
+    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Bouncing DVD Logo", nullptr, nullptr);
+    if (!window) {
+        glfwTerminate();
+        exit(EXIT_FAILURE);
+    }
+
+    glfwMakeContextCurrent(window);
+    glfwSetKeyCallback(window, key_callback);
 
     while (!glfwWindowShouldClose(window)) {
-
+        glClear(GL_COLOR_BUFFER_BIT);
+        glfwSwapBuffers(window);
+        glfwPollEvents();
     }
-    return 0;
+
+    glfwDestroyWindow(window);
+    glfwTerminate();
+    exit(EXIT_SUCCESS);
 }
