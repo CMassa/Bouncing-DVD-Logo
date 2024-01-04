@@ -25,7 +25,6 @@ GLuint loadTexture(const char *imagePath) {
     if (image) {
         std::cout << width << " " << height << std::endl;
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
-        glGenerateMipmap(GL_TEXTURE_2D);
     } else {
         std::cerr << "Error loading image: " << stbi_failure_reason() << std::endl;
         exit(EXIT_FAILURE);
