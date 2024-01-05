@@ -3,13 +3,14 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 #include <iostream>
-#include <vector>
+#include <string>
+#include <map>
 
 const int WIDTH = 1024;
 const int HEIGHT = 768;
-bool full_screen = false;
 
-std::vector<GLuint> textures;
+bool full_screen = false;
+std::map<std::string, GLuint> textures;
 
 GLuint loadTexture(const char *imagePath) {
     GLuint textureID;
@@ -23,7 +24,6 @@ GLuint loadTexture(const char *imagePath) {
     int width, height, channels;
     unsigned char* image = stbi_load(imagePath, &width, &height, &channels, STBI_rgb);
     if (image) {
-        std::cout << width << " " << height << std::endl;
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
     } else {
         std::cerr << "Error loading image: " << stbi_failure_reason() << std::endl;
@@ -35,7 +35,7 @@ GLuint loadTexture(const char *imagePath) {
 }
 
 void loadTextures() {
-    textures.push_back(loadTexture("dvd.jpg"));
+    textures.insert(std::make_pair("DVD_LOGO", loadTexture("dvd.jpg")));
 }
 
 void toggle_full_screen(GLFWwindow* window) {
@@ -58,8 +58,7 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
     }
 }
 
-static void error_callback(int error, const char* description)
-{
+static void error_callback(int error, const char* description) {
     fprintf(stderr, "Error: %s\n", description);
 }
 
@@ -79,6 +78,8 @@ int main(int argc, char** argv) {
 
     glfwMakeContextCurrent(window);
     glfwSetKeyCallback(window, key_callback);
+
+    loadTextures();
 
     while (!glfwWindowShouldClose(window)) {
         glClear(GL_COLOR_BUFFER_BIT);
