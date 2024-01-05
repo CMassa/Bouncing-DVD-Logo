@@ -1,29 +1,25 @@
-#include "callbacks.h"
-#include "utilities.h"
+#include "glfw_utilities.h"
+#include "image_utilities.h"
+#include <map>
+
+std::map<std::string, GLuint> textures;
 
 void loadTextures() {
-    textures.insert(std::make_pair("DVD_LOGO", loadTexture("dvd.jpg")));
+    textures.insert(std::make_pair("DVD_LOGO", loadTexture( "dvd.jpg")));
+}
+
+void display(GLFWwindow* window) {
+    glClear(GL_COLOR_BUFFER_BIT);
+    glfwSwapBuffers(window);
+    glfwPollEvents();
 }
 
 int main(int argc, char** argv) {
-    glfwSetErrorCallback(glfw_error_callback);
-    glfwInit();
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
-
-    GLFWwindow* window = createWindow();
-    glfwMakeContextCurrent(window);
-    glfwSetKeyCallback(window, glfw_key_callback);
-
+    initGlfw();
+    GLFWwindow* window = createWindow(WINDOW_TITLE, WIDTH, HEIGHT);
     loadTextures();
-
     while (!glfwWindowShouldClose(window)) {
-        glClear(GL_COLOR_BUFFER_BIT);
-        glfwSwapBuffers(window);
-        glfwPollEvents();
+        display(window);
     }
-
-    glfwDestroyWindow(window);
-    glfwTerminate();
-    exit(EXIT_SUCCESS);
+    destroyWindow(window);
 }

@@ -2,11 +2,8 @@
 #include "stb_image.h"
 #include <iostream>
 #include <string>
-#include <map>
 
-std::map<std::string, GLuint> textures;
-
-GLuint loadTexture(const char *imagePath) {
+GLuint loadTexture(const char* imagePath) {
     GLuint textureID;
     glGenTextures(1, &textureID);
     glBindTexture(GL_TEXTURE_2D, textureID);
@@ -26,13 +23,4 @@ GLuint loadTexture(const char *imagePath) {
     stbi_image_free(image);
 
     return textureID;
-}
-
-GLFWwindow* createWindow() {
-    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, WINDOW_TITLE, nullptr, nullptr);
-    if (!window) {
-        glfwTerminate();
-        exit(EXIT_FAILURE);
-    }
-    return window;
 }
