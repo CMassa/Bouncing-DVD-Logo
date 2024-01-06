@@ -1,6 +1,8 @@
+#include <GL/glew.h>
+#include <GL/gl.h>
+#include <map>
 #include "glfw_utilities.h"
 #include "image_utilities.h"
-#include <map>
 
 std::map<std::string, GLuint> textures;
 
@@ -17,6 +19,8 @@ void display(GLFWwindow* window) {
 int main(int argc, char** argv) {
     initGlfw();
     GLFWwindow* window = createWindow(WINDOW_TITLE, WIDTH, HEIGHT);
+    glewExperimental = GL_TRUE;
+    glewInit();
     loadTextures();
     while (!glfwWindowShouldClose(window)) {
         display(window);
