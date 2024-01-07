@@ -1,11 +1,14 @@
 # Project properties
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 3.28.1)
 project(Bouncing-DVD-Logo)
 
+# Set up vcpkg toolchain file
+set(CMAKE_TOOLCHAIN_FILE "F:/Repositories/vcpkg/scripts/buildsystems/vcpkg.cmake")
+
 # Find packages
-find_package(OpenGL REQUIRED)
-find_package(glfw3 REQUIRED)
-find_package(GLEW REQUIRED)
+find_package(OpenGL CONFIG REQUIRED)
+find_package(glfw3 CONFIG REQUIRED)
+find_package(glad CONFIG REQUIRED)
 
 # Create executable
 set(SOURCES main.cpp)
@@ -24,5 +27,6 @@ target_link_libraries(
     ${PROJECT_NAME}
     PRIVATE
     ${OPENGL_LIBRARIES}
-    glfw GLEW::GLEW
+    glfw
+    glad::glad
 )
