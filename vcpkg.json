@@ -1,6 +1,7 @@
 {
-    "dependencies": [
-      "glfw3",
-      "glad"
-    ]
-  }
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+  "dependencies": [
+    "glfw3",
+    "glad"
+  ]
+}

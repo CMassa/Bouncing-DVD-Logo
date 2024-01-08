@@ -1,5 +1,5 @@
-#include <GL/gl.h>
 #include <glad/glad.h>
+#include <GLFW/glfw3.h>
 #include <map>
 #include "glfw_utilities.h"
 #include "image_utilities.h"
@@ -19,6 +19,7 @@ void display(GLFWwindow* window) {
 int main(int argc, char** argv) {
     initGlfw();
     GLFWwindow* window = createWindow(WINDOW_TITLE, WIDTH, HEIGHT);
+    gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
     loadTextures();
     while (!glfwWindowShouldClose(window)) {
         display(window);
