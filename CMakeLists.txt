@@ -2,11 +2,7 @@
 cmake_minimum_required(VERSION 3.28.1)
 project(Bouncing-DVD-Logo)
 
-# Set up vcpkg toolchain file
-set(CMAKE_TOOLCHAIN_FILE "F:/Repositories/vcpkg/scripts/buildsystems/vcpkg.cmake")
-
 # Find packages
-find_package(OpenGL CONFIG REQUIRED)
 find_package(glfw3 CONFIG REQUIRED)
 find_package(glad CONFIG REQUIRED)
 
