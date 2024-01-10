@@ -4,9 +4,22 @@
         {
             "name": "default",
             "binaryDir": "${sourceDir}/build",
+            "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+        },
+        {
+            "name": "x64-osx",
+            "displayName": "x64-osx",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build-x64-osx",
+            "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
             "cacheVariables": {
-                "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
-                "type": "FILEPATH"
+                "CMAKE_MAKE_PROGRAM": "cmake",
+                "CMAKE_C_COMPILER": "cc",
+                "CMAKE_CXX_COMPILER": "clang-cl",
+                "VCPKG_TARGET_TRIPLET": "x64-osx",
+                "BUILD_SHARED_LIBS": true,
+                "WITH_GCD": true,
+                "CMAKE_OSX_ARCHITECTURES": "x86_64"
             }
         }
     ]
