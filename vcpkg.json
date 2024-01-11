@@ -2,6 +2,9 @@
   "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
   "dependencies": [
     "glfw3",
-    "glad"
+    {
+      "name": "glad",
+      "platform": "windows"
+    }
   ]
 }
