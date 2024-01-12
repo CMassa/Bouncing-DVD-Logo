@@ -13,11 +13,8 @@
             "binaryDir": "${sourceDir}/build",
             "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
             "cacheVariables": {
-                "CMAKE_MAKE_PROGRAM": "cmake",
                 "CMAKE_CXX_COMPILER": "clang",
                 "VCPKG_TARGET_TRIPLET": "x64-osx",
-                "BUILD_SHARED_LIBS": true,
-                "WITH_GCD": true,
                 "CMAKE_OSX_ARCHITECTURES": "x86_64"
             }
         }
