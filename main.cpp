@@ -1,9 +1,11 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <string>
 #include <map>
 
-#include "glfw_utilities.h"
-#include "image_utilities.h"
+#include "include/glfw_utilities.h"
+#include "include/image_utilities.h"
+#include "include/settings.h"
 
 std::map<std::string, GLuint> textures;
 

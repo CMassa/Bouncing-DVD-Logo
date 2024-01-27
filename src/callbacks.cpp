@@ -1,6 +1,7 @@
+#include "../include/callbacks.h"
 #include <cstdio>
 #include <cstdlib>
-#include "settings.h"
+#include "../include/settings.h"
 
 void toggle_full_screen(GLFWwindow* window) {
     if (full_screen) {

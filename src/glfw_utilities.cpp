@@ -1,6 +1,6 @@
-#pragma once
+#include "../include/glfw_utilities.h"
 #include <GLFW/glfw3.h>
-#include "callbacks.h"
+#include "../include/callbacks.h"
 
 void initGlfw() {
     glfwSetErrorCallback(glfw_error_callback);

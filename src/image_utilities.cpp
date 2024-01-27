@@ -1,6 +1,6 @@
-#pragma once
+#include "../include/image_utilities.h"
 #define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
+#include "../include/stb_image.h"
 #include <iostream>
 #include <string>
 
