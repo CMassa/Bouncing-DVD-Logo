@@ -32,3 +32,9 @@ Mesh loadMesh(const std::vector<Vertex>& vertices, const std::vector<GLint> inde
 
     return Mesh(VAO, indexes.size());
 }
+
+void drawMesh(const Mesh& mesh) {
+    glBindVertexArray(mesh.vao);
+    glDrawElements(GL_TRIANGLES, mesh.numberOfIndexes, GL_UNSIGNED_INT, nullptr);
+    glBindVertexArray(0);
+}

@@ -17,8 +17,24 @@ void loadTextures() {
     textures.insert(std::make_pair("DVD_LOGO", loadTexture( "dvd.jpg")));
 }
 
-void display(GLFWwindow* window) {
+void display(GLFWwindow* window, const Mesh& mesh) {
     glClear(GL_COLOR_BUFFER_BIT);
+
+    // Draw
+    /*
+    glBindTexture(GL_TEXTURE_2D, textures.at("DVD_LOGO"));
+    */
+    drawMesh(mesh);
+
+    glfwSwapBuffers(window);
+    glfwPollEvents();
+}
+
+int main(int argc, char** argv) {
+    initGlfw();
+    GLFWwindow* window = createWindow(WINDOW_TITLE, WIDTH, HEIGHT);
+    gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
+    loadTextures();
 
     std::vector<Vertex> vertices = {
         Vertex(-1.0f, -1.0f, 0.0f),
@@ -33,22 +49,8 @@ void display(GLFWwindow* window) {
 
     Mesh mesh = loadMesh(vertices, indexes);
 
-    // Draw
-    glBindTexture(GL_TEXTURE_2D, textures.at("DVD_LOGO"));
-    glBindVertexArray(mesh.vao);
-    glDrawElements(GL_TRIANGLES, mesh.numberOfIndexes, GL_UNSIGNED_INT, nullptr);
-
-    glfwSwapBuffers(window);
-    glfwPollEvents();
-}
-
-int main(int argc, char** argv) {
-    initGlfw();
-    GLFWwindow* window = createWindow(WINDOW_TITLE, WIDTH, HEIGHT);
-    gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
-    loadTextures();
     while (!glfwWindowShouldClose(window)) {
-        display(window);
+        display(window, mesh);
     }
     destroyWindow(window);
 }
