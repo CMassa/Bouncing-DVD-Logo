@@ -52,5 +52,6 @@ int main(int argc, char** argv) {
     while (!glfwWindowShouldClose(window)) {
         display(window, mesh);
     }
+    unloadMesh(mesh);
     destroyWindow(window);
 }

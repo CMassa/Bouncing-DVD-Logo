@@ -33,6 +33,10 @@ Mesh loadMesh(const std::vector<Vertex>& vertices, const std::vector<GLint> inde
     return Mesh(VAO, indexes.size());
 }
 
+void unloadMesh(const Mesh& mesh) {
+    glDeleteBuffers(1, &mesh.vao);
+}
+
 void drawMesh(const Mesh& mesh) {
     glBindVertexArray(mesh.vao);
     glDrawElements(GL_TRIANGLES, mesh.numberOfIndexes, GL_UNSIGNED_INT, nullptr);
