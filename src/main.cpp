@@ -30,18 +30,15 @@ int main(int argc, char** argv) {
     //loadTextures();
 
     std::vector<Vertex> vertices = {
-        Vertex(-1.0f, -1.0f, 0.0f),
-        Vertex( 1.0f, -1.0f, 0.0f),
-        Vertex( 1.0f,  1.0f, 0.0f),
-
-        Vertex(-1.0f, -1.0f, 0.0f),
-        Vertex( 1.0f,  1.0f, 0.0f),
-        Vertex(-1.0f,  1.0f, 0.0f)
+        Vertex(-0.5f,  0.5f, 0.0f),
+        Vertex( 0.5f,  0.5f, 0.0f),
+        Vertex(-0.5f, -0.5f, 0.0f),
+        Vertex( 0.5f, -0.5f, 0.0f),
     };
-    std::vector<uint32_t> indexes = { 0, 1, 2, 0, 2, 3 };
+    std::vector<uint32_t> indexes = { 0, 1, 2, 1, 2, 3 };
 
     Mesh mesh = loadMesh(vertices, indexes);
-
+	glClearColor(0.5f, .5f, .5f, 0.f);
     while (!glfwWindowShouldClose(window)) {
         display(window, mesh);
     }
