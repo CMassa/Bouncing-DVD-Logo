@@ -1,6 +1,6 @@
 #include "../include/image_utilities.h"
-#include <iostream>
-#include <string>
+#define STB_IMAGE_IMPLEMENTATION
+#include <stb_image.h>
 
 GLuint loadTexture(const char* imagePath) {
     GLuint textureID;

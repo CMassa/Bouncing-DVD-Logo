@@ -1,6 +1,6 @@
 #pragma once
 
-const char* WINDOW_TITLE = "Bouncing DVD Logo";
-const int WIDTH = 1024;
-const int HEIGHT = 768;
-bool full_screen = false;
+static const char* WINDOW_TITLE = "Bouncing DVD Logo";
+static const int WIDTH = 1024;
+static const int HEIGHT = 768;
+static bool full_screen = false;

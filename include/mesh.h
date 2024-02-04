@@ -6,7 +6,7 @@ struct Mesh {
     uint32_t numberOfIndexes = 0;
 
     Mesh(uint32_t vao, uint32_t numberOfIndexes) {
-        this.vao = vao;
-        this.numberOfIndexes = numberOfIndexes;
+        vao = vao;
+        numberOfIndexes = numberOfIndexes;
     };
 };

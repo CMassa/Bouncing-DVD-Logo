@@ -2,8 +2,6 @@
 cmake_minimum_required(VERSION 3.28.1)
 project(Bouncing-DVD-Logo)
 
-add_definitions(-DSTB_IMAGE_IMPLEMENTATION)
-
 # Find packages
 set(GLAD_PROFILE "core")
 find_package(glfw3 CONFIG REQUIRED)
@@ -11,8 +9,8 @@ find_package(glad CONFIG REQUIRED)
 find_package(Stb REQUIRED)
 
 # Create executable
-set(SOURCES main.cpp)
-add_executable(${PROJECT_NAME} ${SOURCES})
+file(GLOB SRC_FILES "src/*.cpp")
+add_executable(${PROJECT_NAME} ${SRC_FILES})
 
 # Include directories
 target_include_directories(

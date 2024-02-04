@@ -1,7 +1,4 @@
 #include "../include/callbacks.h"
-#include <cstdio>
-#include <cstdlib>
-#include "../include/settings.h"
 
 void toggle_full_screen(GLFWwindow* window) {
     if (full_screen) {
@@ -14,7 +11,7 @@ void toggle_full_screen(GLFWwindow* window) {
     full_screen = !full_screen;
 }
 
-static void glfw_key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
+void glfw_key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
         glfwSetWindowShouldClose(window, GLFW_TRUE);
     }
@@ -23,7 +20,11 @@ static void glfw_key_callback(GLFWwindow* window, int key, int scancode, int act
     }
 }
 
-static void glfw_error_callback(int error, const char* description) {
+void glfw_error_callback(int error, const char* description) {
     fprintf(stderr, "Error: %s\n", description);
     exit(EXIT_FAILURE);
+}
+
+void glfw_framebuffer_size_callback(GLFWwindow* window, int width, int height) {
+    glViewport(0, 0, width, height);
 }
