@@ -18,6 +18,7 @@ void loadTextures() {
 void display(GLFWwindow* window, const Mesh& mesh) {
         glClear(GL_COLOR_BUFFER_BIT);
 
+        
         drawMesh(mesh);
 
         glfwSwapBuffers(window);
@@ -27,13 +28,13 @@ void display(GLFWwindow* window, const Mesh& mesh) {
 int main(int argc, char** argv) {
     initGlfw();
     GLFWwindow* window = createWindow(WINDOW_TITLE, WIDTH, HEIGHT);
-    //loadTextures();
+    loadTextures();
 
     std::vector<Vertex> vertices = {
-        Vertex(-0.5f,  0.5f, 0.0f),
-        Vertex( 0.5f,  0.5f, 0.0f),
-        Vertex(-0.5f, -0.5f, 0.0f),
-        Vertex( 0.5f, -0.5f, 0.0f),
+        Vertex(-0.5f,  0.5f, 0.0f, 1.0f, 1.0f),
+        Vertex( 0.5f,  0.5f, 0.0f, 1.0f, 0.0f),
+        Vertex(-0.5f, -0.5f, 0.0f, 0.0f, 0.0f),
+        Vertex( 0.5f, -0.5f, 0.0f, 0.0f, 1.0f),
     };
     std::vector<uint32_t> indexes = { 0, 1, 2, 1, 2, 3 };
 

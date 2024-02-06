@@ -6,3 +6,5 @@
 #include <string>
 
 GLuint loadTexture(const char* imagePath);
+
+void unloadTexture(GLuint textureID);
