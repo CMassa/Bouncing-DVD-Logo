@@ -18,7 +18,6 @@ void loadTextures() {
 void display(GLFWwindow* window, const Mesh& mesh) {
         glClear(GL_COLOR_BUFFER_BIT);
 
-        
         drawMesh(mesh);
 
         glfwSwapBuffers(window);

@@ -1,7 +1,7 @@
 #include "../include/glfw_utilities.h"
 
 void initGlfw() {
-    glfwSetErrorCallback(glfw_error_callback);
+    glfwSetErrorCallback(glfwErrorCallback);
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
@@ -15,8 +15,8 @@ GLFWwindow* createWindow(const char* title, int width, int height) {
     }
     glfwMakeContextCurrent(window);
     gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
-    glfwSetKeyCallback(window, glfw_key_callback);
-    glfwSetFramebufferSizeCallback(window, glfw_framebuffer_size_callback);
+    glfwSetKeyCallback(window, glfwKeyCallback);
+    glfwSetFramebufferSizeCallback(window, glfwFramebufferSizeCallback);
     return window;
 }
 
