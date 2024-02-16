@@ -24,14 +24,13 @@ int compileShader(const char* shaderPath, GLenum type) {
     if(!success) {
         char infoLog[512];
         glGetShaderInfoLog(shader, 512, NULL, infoLog);
-        std::cout << "Compile shader " + type + " failed\n" <<
-        infoLog << std::endl;
+        std::cout << "Compile shader " << type << " failed\n" << infoLog << std::endl;
     }
     return shader;
 }
 
 int linkProgram(const int vertexShader, const int fragmentShader) {
-    unsigned int program = glCreateProgram()
+    unsigned int program = glCreateProgram();
     glAttachShader(program, vertexShader);
     glAttachShader(program, fragmentShader);
     glLinkProgram(program);
@@ -41,8 +40,7 @@ int linkProgram(const int vertexShader, const int fragmentShader) {
     if(!success) {
         char infoLog[512];
         glGetProgramInfoLog(program, 512, NULL, infoLog);
-        std::cout << "Link program failed\n" <<
-        infoLog << std::endl;
+        std::cout << "Link program failed\n" << infoLog << std::endl;
     }
-    return program:
+    return program;
 }
