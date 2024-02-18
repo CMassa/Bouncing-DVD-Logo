@@ -2,6 +2,9 @@
 
 #include <glad/glad.h>
 #include <iostream>
+#include <fstream>
+#include <sstream>
+#include <cstdlib>
 
 int createShaderProgram(const char* vertexShaderPath, const char* fragmentShaderPath);
 

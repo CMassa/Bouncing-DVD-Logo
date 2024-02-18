@@ -15,8 +15,20 @@ int createShaderProgram(const char* vertexShaderPath, const char* fragmentShader
 }
 
 int compileShader(const char* shaderPath, GLenum type) {
+    std::ifstream shaderFile;
+    std::stringstream shaderStream;
+    try {
+        shaderFile.open(shaderPath);
+        shaderStream << shaderFile.rdbuf();
+        shaderFile.close();
+        std::cout << shaderStream.str() << std::endl;
+    } catch(std::ifstream::failure e) {
+        std::cout << "Error reading shader file " << shaderPath << std::endl;
+    }
+    const char* shaderSource = shaderStream.str().c_str();
+
     unsigned int shader = glCreateShader(type);
-    glShaderSource(shader, 1, &shaderPath, NULL);
+    glShaderSource(shader, 1, &shaderSource, NULL);
     glCompileShader(shader);
 
     int success;

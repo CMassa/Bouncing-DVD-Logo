@@ -8,6 +8,7 @@
 #include "../include/vertex.h"
 #include "../include/mesh.h"
 #include "../include/opengl_utilities.h"
+#include "../include/shader_utilities.h"
 
 std::map<std::string, GLuint> textures;
 
@@ -28,6 +29,11 @@ int main(int argc, char** argv) {
     initGlfw();
     GLFWwindow* window = createWindow(WINDOW_TITLE, WIDTH, HEIGHT);
     loadTextures();
+
+    std::string vertexShaderPath = "shaders/vertex.glsl";
+    std::string fragmentShaderPath = "shaders/fragment.glsl";
+    int shaderProgram = createShaderProgram(vertexShaderPath.c_str(), fragmentShaderPath.c_str());
+    glUseProgram(shaderProgram);
 
     std::vector<Vertex> vertices = {
         Vertex(-0.5f,  0.5f, 0.0f, 1.0f, 1.0f),
