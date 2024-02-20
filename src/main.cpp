@@ -13,7 +13,7 @@
 std::map<std::string, GLuint> textures;
 
 void loadTextures() {
-    textures.insert(std::make_pair("DVD_LOGO", loadTexture( "dvd.jpg")));
+    textures.insert(std::make_pair("DVD_LOGO", loadTexture( "assets/dvd.jpg")));
 }
 
 void display(GLFWwindow* window, const Mesh& mesh) {

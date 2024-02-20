@@ -1,6 +1,8 @@
 # Project properties
 cmake_minimum_required(VERSION 3.28.1)
 project(Bouncing-DVD-Logo)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Find packages
 set(GLAD_PROFILE "core")

@@ -5,6 +5,7 @@
 #include <fstream>
 #include <sstream>
 #include <cstdlib>
+#include <filesystem>
 
 int createShaderProgram(const char* vertexShaderPath, const char* fragmentShaderPath);
 
