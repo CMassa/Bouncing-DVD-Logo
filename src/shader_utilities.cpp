@@ -15,20 +15,15 @@ int createShaderProgram(const char* vertexShaderPath, const char* fragmentShader
 }
 
 int compileShader(const char* shaderPath, GLenum type) {
-    std::stringstream shaderStream;
-    try {
-        std::string path = std::filesystem::absolute(shaderPath).string();
-        std::ifstream shaderFile(path);
-        if (!shaderFile.is_open()) {
-            std::cerr << "Error code: " << strerror(errno) << std::endl;
-            return 1;
-        }
-        shaderFile.open(shaderPath);
-        shaderStream << shaderFile.rdbuf();
-        shaderFile.close();
-    } catch(std::ifstream::failure e) {
-        std::cout << "Error reading shader file " << shaderPath << std::endl;
+    std::ifstream shaderFile(shaderPath);
+    if (!shaderFile.is_open()) {
+        std::cerr << "Error code: " << strerror(errno) << std::endl;
+        return 1;
     }
+    std::stringstream shaderStream;
+    shaderStream << shaderFile.rdbuf();
+    shaderFile.close();
+
     std::string content = shaderStream.str();
     const char* shaderSource = content.c_str();
 
