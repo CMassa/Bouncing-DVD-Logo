@@ -16,8 +16,10 @@ void loadTextures() {
     textures.insert(std::make_pair("DVD_LOGO", loadTexture( "assets/dvd.jpg")));
 }
 
-void display(GLFWwindow* window, const Mesh& mesh) {
+void display(GLFWwindow* window, const Mesh& mesh, const int& shaderProgram) {
+        glClearColor(0.0f, 0.0f, 0.0f, 1.f);
         glClear(GL_COLOR_BUFFER_BIT);
+        glUseProgram(shaderProgram);
 
         drawMesh(mesh);
 
@@ -28,12 +30,10 @@ void display(GLFWwindow* window, const Mesh& mesh) {
 int main(int argc, char** argv) {
     initGlfw();
     GLFWwindow* window = createWindow(WINDOW_TITLE, WIDTH, HEIGHT);
-    loadTextures();
 
     std::string vertexShaderPath = "shaders/vertex.glsl";
     std::string fragmentShaderPath = "shaders/fragment.glsl";
     int shaderProgram = createShaderProgram(vertexShaderPath.c_str(), fragmentShaderPath.c_str());
-    glUseProgram(shaderProgram);
 
     std::vector<Vertex> vertices = {
         Vertex(-0.5f,  0.5f, 0.0f, 1.0f, 1.0f),
@@ -43,10 +43,10 @@ int main(int argc, char** argv) {
     };
     std::vector<uint32_t> indexes = { 0, 1, 2, 1, 2, 3 };
 
+    loadTextures();
     Mesh mesh = loadMesh(vertices, indexes);
-	glClearColor(0.5f, .5f, .5f, 0.f);
     while (!glfwWindowShouldClose(window)) {
-        display(window, mesh);
+        display(window, mesh, shaderProgram);
     }
     unloadMesh(mesh);
     destroyWindow(window);
