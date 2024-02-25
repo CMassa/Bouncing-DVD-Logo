@@ -36,10 +36,26 @@ int main(int argc, char** argv) {
     int shaderProgram = createShaderProgram(vertexShaderPath.c_str(), fragmentShaderPath.c_str());
 
     std::vector<Vertex> vertices = {
-        Vertex(-0.5f,  0.5f, 0.0f, 1.0f, 1.0f),
-        Vertex( 0.5f,  0.5f, 0.0f, 1.0f, 0.0f),
-        Vertex(-0.5f, -0.5f, 0.0f, 0.0f, 0.0f),
-        Vertex( 0.5f, -0.5f, 0.0f, 0.0f, 1.0f),
+        Vertex( // Top left
+            glm::vec3(-0.5f, 0.5f, 0.0f),
+            glm::vec3( 1.0f, 0.0f, 0.0f),
+            glm::vec2( 0.0f, 1.0f)
+        ),
+        Vertex( // Top right
+            glm::vec3(0.5f, 0.5f, 0.0f),
+            glm::vec3(0.0f, 1.0f, 0.0f),
+            glm::vec2(1.0f, 1.0f)
+        ),
+        Vertex( // Bottom left
+            glm::vec3(-0.5f, -0.5f, 0.0f),
+            glm::vec3( 0.0f,  0.0f, 1.0f),
+            glm::vec2( 0.0f,  0.0f)
+        ),
+        Vertex( // Bottom right
+            glm::vec3(0.5f, -0.5f, 0.0f),
+            glm::vec3(1.0f,  1.0f, 0.0f),
+            glm::vec2(1.0f,  0.0f)
+        )
     };
     std::vector<uint32_t> indexes = { 0, 1, 2, 1, 2, 3 };
 
