@@ -1,8 +1,8 @@
 #include "../include/opengl_utilities.h"
 
-Mesh loadMesh(const std::vector<Vertex>& vertices, const std::vector<uint32_t> indexes) {
+Mesh loadMesh(const std::vector<Vertex>& vertices, const std::vector<GLint> indexes) {
     // Vertex Array Object (VAO) / Vertex Buffer Object (VBO) / Element Buffer Object (EBO)
-    uint32_t VAO, VBO, EBO; 
+    GLuint VAO, VBO, EBO;
 
     // Setup VAO
     glGenVertexArrays(1, &VAO);
@@ -12,9 +12,11 @@ Mesh loadMesh(const std::vector<Vertex>& vertices, const std::vector<uint32_t> i
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), vertices.data(), GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*) 0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*) 0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*) (6 * sizeof(float)));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*) (3 * sizeof(GLfloat)));
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*) (6 * sizeof(GLfloat)));
     glEnableVertexAttribArray(2);
 
     // Setup EBO
