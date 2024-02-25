@@ -3,6 +3,7 @@
   "dependencies": [
     "glfw3",
     "stb",
+    "glm",
     {
       "name": "glad",
       "platform": "windows"

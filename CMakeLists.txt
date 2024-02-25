@@ -9,6 +9,7 @@ set(GLAD_PROFILE "core")
 find_package(glfw3 CONFIG REQUIRED)
 find_package(glad CONFIG REQUIRED)
 find_package(Stb REQUIRED)
+find_package(glm REQUIRED)
 
 # Create executable
 file(GLOB SRC_FILES "src/*.cpp")
@@ -30,4 +31,5 @@ target_link_libraries(
     ${OPENGL_LIBRARIES}
     glfw
     glad::glad
+    glm::glm
 )
