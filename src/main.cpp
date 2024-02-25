@@ -33,26 +33,28 @@ int main(int argc, char** argv) {
     GLFWwindow* window = createWindow(WINDOW_TITLE, WIDTH, HEIGHT);
 
     // Prepare DVD vertices
+    constexpr float dvdHeight = 0.1f;
+    constexpr float dvdWidth = dvdHeight * 2;
     std::vector<Vertex> vertices = {
         Vertex( // Top left
-            glm::vec3(-0.5f, 0.5f, 0.0f),
+            glm::vec3(-dvdWidth, dvdHeight, 0.0f),
             glm::vec3( 1.0f, 0.0f, 0.0f),
             glm::vec2( 0.0f, 1.0f)
         ),
         Vertex( // Top right
-            glm::vec3(0.5f, 0.5f, 0.0f),
+            glm::vec3(dvdWidth, dvdHeight, 0.0f),
             glm::vec3(0.0f, 1.0f, 0.0f),
             glm::vec2(1.0f, 1.0f)
         ),
         Vertex( // Bottom left
-            glm::vec3(-0.5f, -0.5f, 0.0f),
-            glm::vec3( 0.0f,  0.0f, 1.0f),
-            glm::vec2( 0.0f,  0.0f)
+            glm::vec3(-dvdWidth, -dvdHeight, 0.0f),
+            glm::vec3( 0.0f, 0.0f, 1.0f),
+            glm::vec2( 0.0f, 0.0f)
         ),
         Vertex( // Bottom right
-            glm::vec3(0.5f, -0.5f, 0.0f),
-            glm::vec3(1.0f,  1.0f, 0.0f),
-            glm::vec2(1.0f,  0.0f)
+            glm::vec3(dvdWidth, -dvdHeight, 0.0f),
+            glm::vec3(1.0f, 1.0f, 0.0f),
+            glm::vec2(1.0f, 0.0f)
         )
     };
     std::vector<GLint> indexes = { 0, 1, 2, 1, 2, 3 };
