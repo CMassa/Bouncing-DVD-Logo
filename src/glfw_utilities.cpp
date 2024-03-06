@@ -4,7 +4,7 @@ void initGlfw() {
     glfwSetErrorCallback(glfwErrorCallback);
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 }
 
 GLFWwindow* createWindow(const char* title, int width, int height) {
